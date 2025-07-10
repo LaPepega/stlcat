@@ -6,12 +6,11 @@
 
 int main(int argc, char const *argv[])
 {
+    vec3 a = VEC3(10, 2, 1);
+    vec3 b = VEC3(6, 5, 1);
+    vec3 c = vec3cross(a, b);
 
-    for (color256 i = 0; i < 128; i++)
-    {
-        printf("%s%s" CH_BLOCK_UHALF,
-               ansi_setfg_str(i), ansi_setbg_str(i + 128));
-    }
+    printf("x:%.2f\ny:%.2f\nz:%.2f\n", c.x, c.y, c.z);
 
     return 0;
 }

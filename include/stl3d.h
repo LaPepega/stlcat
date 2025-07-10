@@ -1,17 +1,10 @@
 #pragma once
-#include <stdint.h>
-
-typedef struct stl3d_vec3
-{
-    float x;
-    float y;
-    float z;
-} stl_vec3;
+#include "vec3.h"
 
 typedef struct stl3d_facet
 {
-    stl_vec3 p1;
-    stl_vec3 p2;
-    stl_vec3 p3;
-    stl_vec3 normal;
+    vec3 p1;
+    vec3 p2;
+    vec3 p3;
+    vec3 normal;
 } stl_facet;
