@@ -29,10 +29,42 @@ float vec3sin(vec3 a, vec3 b)
     return sqrtf(1 - cos * cos);
 }
 
+vec3 vec3add(vec3 a, vec3 b)
+{
+    return VEC3(a.x + b.x, a.y + b.y, a.z + b.x);
+}
+
+vec3 vec3sub(vec3 a, vec3 b)
+{
+    return VEC3(a.x - b.x, a.y - b.y, a.z - b.x);
+}
+
 vec3 vec3cross(vec3 a, vec3 b)
 {
     return (vec3){
         .x = (a.y * b.z - a.z * b.y),
         .y = (a.z * b.x - a.x * b.z),
         .z = (a.x * b.y - a.y * b.x)};
+}
+
+vec3 vec3norm(vec3 v)
+{
+    float m = vec3mag(v);
+    if (m == 0.0f)
+        return VEC3_ZERO;
+    return VEC3(v.x / m, v.y / m, v.z / m);
+}
+
+int vec3make_norm(vec3 *v)
+{
+    float m = vec3mag(*v);
+    if (m == 0.0f)
+        return -1;
+    *v = VEC3(v->x / m, v->y / m, v->z / m);
+    return 0;
+}
+
+vec3 vec3perp_unit(vec3 a, vec3 b)
+{
+    return vec3norm(vec3cross(a, b));
 }
