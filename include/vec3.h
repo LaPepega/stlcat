@@ -13,7 +13,7 @@ typedef struct vec3
 #define VEC3(X, Y, Z) \
     (vec3) { .x = X, .y = Y, .z = Z }
 
-#define VEC3_PRINT(v) printf("(%.2f,\t%.2f,\t%.2f)\n", v.x, v.y, v.z)
+#define VEC3_PRINT(v) printf("(%.2f, %.2f, %.2f)", v.x, v.y, v.z)
 #define VEC3_PPRINT(v) printf("x: %.2f\ny: %.2f\nz: %.2f\n", v.x, v.y, v.z)
 
 float vec3mag(vec3 v);

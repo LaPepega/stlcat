@@ -21,17 +21,24 @@ typedef struct tri
 #define TRI(P1, P2, P3, N) \
     (tri) { .p1 = P1, .p2 = P2, .p3 = P3, .normal = N }
 
-#define TRI_FROM_POINTS(P1, P2, P3) \
-    TRI(P1, P2, P3, vec3perp_unit(vec3sub(P1, P2), vec3sub(P1, P3)))
+#define TRI_FROM_POINTS(P1, P2, P3)       \
+    (tri) { .p1 = P1, .p2 = P2, .p3 = P3, \
+            .normal = vec3perp_unit(vec3sub(P2, P1), vec3sub(P3, P1)) }
 
-#define TRI_PPRINT(t) \
-    printf("p1:\t");  \
+#define TRI_PRINT(t)  \
     VEC3_PRINT(t.p1); \
-    printf("p2:\t");  \
     VEC3_PRINT(t.p2); \
-    printf("p3:\t");  \
-    VEC3_PRINT(t.p3); \
-    printf("n:\t");   \
+    VEC3_PRINT(t.p2); \
+    VEC3_PRINT(t.normal);
+
+#define TRI_PPRINT(t)  \
+    printf("p1:\t");   \
+    VEC3_PRINT(t.p1);  \
+    printf("\np2:\t"); \
+    VEC3_PRINT(t.p2);  \
+    printf("\np3:\t"); \
+    VEC3_PRINT(t.p3);  \
+    printf("\nn:\t");  \
     VEC3_PRINT(t.normal);
 
 int tri_calc_normal(tri *t);
