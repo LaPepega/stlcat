@@ -3,7 +3,7 @@ project(stlcat)
 
 include_directories(include)
 
-set(LIBS tri vec3)
+set(LIBS tri vec3 solid)
 set(EXTERNAL_LIBS m)
 
 foreach(L IN LISTS LIBS)

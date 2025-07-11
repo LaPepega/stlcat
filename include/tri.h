@@ -31,14 +31,15 @@ typedef struct tri
     VEC3_PRINT(t.p2); \
     VEC3_PRINT(t.normal);
 
-#define TRI_PPRINT(t)  \
-    printf("p1:\t");   \
-    VEC3_PRINT(t.p1);  \
-    printf("\np2:\t"); \
-    VEC3_PRINT(t.p2);  \
-    printf("\np3:\t"); \
-    VEC3_PRINT(t.p3);  \
-    printf("\nn:\t");  \
-    VEC3_PRINT(t.normal);
+#define TRI_PPRINT(t)     \
+    printf("p1:\t");      \
+    VEC3_PRINT(t.p1);     \
+    printf("\np2:\t");    \
+    VEC3_PRINT(t.p2);     \
+    printf("\np3:\t");    \
+    VEC3_PRINT(t.p3);     \
+    printf("\nn:\t");     \
+    VEC3_PRINT(t.normal); \
+    printf("\n");
 
 int tri_calc_normal(tri *t);

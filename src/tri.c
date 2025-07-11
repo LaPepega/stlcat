@@ -13,8 +13,13 @@ tri tri_init(vec3 p1, vec3 p2, vec3 p3)
 }
 */
 
+vec3 tri_norm(tri t)
+{
+    return vec3perp_unit(vec3sub(t.p1, t.p2), vec3sub(t.p1, t.p3));
+}
+
 int tri_calc_normal(tri *t)
 {
-    t->normal = vec3perp_unit(vec3sub(t->p1, t->p2), vec3sub(t->p1, t->p3));
+    t->normal = tri_norm(*t);
     return 0;
 }

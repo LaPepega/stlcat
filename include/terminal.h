@@ -12,6 +12,8 @@
 
 typedef unsigned char color256;
 
+// FIXME: find safe snprintf() alternative
+
 const char *ansi_setfg_str(color256 color)
 {
     static char str[12];

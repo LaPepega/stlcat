@@ -1,17 +1,15 @@
 #include <stdlib.h>
 #include <stdio.h>
 
-#include "tri.h"
+#include "solid.h"
 #include "terminal.h"
 
 int main(int argc, char const *argv[])
 {
-    vec3 a = VEC3(10, 2, 1);
-    vec3 b = VEC3(6, 5, 1);
-    vec3 c = VEC3(5, 6, 1);
+    solid s = solid_new_from_file_bin(argv[1]);
 
-    tri t = TRI(a, b, c, 0);
-    tri_calc_normal(&t);
-    TRI_PPRINT(t);
+    SOLID_PPRINT(s);
+
+    solid_free(&s);
     return 0;
 }
