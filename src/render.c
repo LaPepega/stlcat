@@ -1,5 +1,6 @@
 #include "solid.h"
 #include "vec2.h"
+#include "render.h"
 
 vec3 r_mat4x4_mul_vec3(float mat4x4[4][4], vec3 v)
 {
@@ -28,8 +29,8 @@ vec3 r_vec3localize(vec3 v, vec3 c_pos, vec3 c_target)
 }
 
 // v must be in camera space
-vec2 r_vec3proj(vec3 v, float fl, vec2 screen)
+vec2u r_vec3proj(vec3 v, float focal_len, vec2u screen)
 {
-    return VEC2((v.x * fl) / v.z + (screen.x / 2),
-                (v.y * fl) / v.z + (screen.y / 2));
+    return VEC2U((v.x * focal_len) / v.z + (screen.x / 2),
+                 (v.y * focal_len) / v.z + (screen.y / 2));
 }
