@@ -1,3 +1,4 @@
+#pragma once
 #include "tri.h"
 
 typedef struct solid
