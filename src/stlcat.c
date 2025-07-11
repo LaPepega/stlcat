@@ -2,14 +2,14 @@
 #include <stdio.h>
 
 #include "solid.h"
-#include "terminal.h"
+#include "stlrender.h"
 
 int main(int argc, char const *argv[])
 {
-    solid s = solid_new_from_file_bin(argv[1]);
+    vec3 origin = VEC3_ZERO;
+    vec3 camera = VEC3(10, 1, 5);
 
-    SOLID_PPRINT(s);
+    VEC3_PPRINT(r_vec3localize(origin, camera, VEC3(0, 1, 0)));
 
-    solid_free(&s);
     return 0;
 }

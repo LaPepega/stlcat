@@ -1,8 +1,5 @@
 #include "solid.h"
-#include "vec3.h"
 #include "vec2.h"
-
-#include "terminal.h"
 
 vec3 r_mat4x4_mul_vec3(float mat4x4[4][4], vec3 v)
 {
