@@ -1,7 +1,12 @@
 cmake_minimum_required(VERSION 4.0)
-set(C_STANDARD_REQUIRED C17)
 
 project(stlcat)
+
+set(C_STANDARD_REQUIRED C17)
+
+set(CMAKE_C_FLAGS "-Wall -Wextra") 
+set(CMAKE_C_FLAGS_DEBUG "-O0 -g -v")
+set(CMAKE_C_FLAGS_RELEASE "-O3")
 
 include_directories(include)
 
