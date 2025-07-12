@@ -16,7 +16,7 @@ solid solid_new_from_file_bin(const char *path)
         return SOLID_ZERO;
     }
 
-    unsigned long n_facets;
+    unsigned long n_facets = 0;
     if (fread(&n_facets, 4, 1, f) == 0)
     {
         fclose(f);

@@ -5,15 +5,26 @@
 vec3 r_mat4x4_mul_vec3(float mat4x4[4][4], vec3 v)
 {
     return VEC3(
-        v.x * mat4x4[0][0] + v.y * mat4x4[1][0] + v.z * mat4x4[2][0] + mat4x4[3][0],
-        v.x * mat4x4[0][1] + v.y * mat4x4[1][1] + v.z * mat4x4[2][1] + mat4x4[3][1],
-        v.x * mat4x4[0][2] + v.y * mat4x4[1][2] + v.z * mat4x4[2][2] + mat4x4[3][2]);
+        v.x * mat4x4[0][0] +
+            v.y * mat4x4[1][0] +
+            v.z * mat4x4[2][0] +
+            mat4x4[3][0],
+
+        v.x * mat4x4[0][1] +
+            v.y * mat4x4[1][1] +
+            v.z * mat4x4[2][1] +
+            mat4x4[3][1],
+
+        v.x * mat4x4[0][2] +
+            v.y * mat4x4[1][2] +
+            v.z * mat4x4[2][2] +
+            mat4x4[3][2]);
 }
 
 // vec3 in camera space
 vec3 r_vec3localize(vec3 v, vec3 c_pos, vec3 c_target)
 {
-    vec3 forward = vec3sub(c_pos, c_target);
+    vec3 forward = vec3norm(vec3sub(c_pos, c_target));
     vec3 right = vec3perp_unit(VEC3_Z, forward);
     vec3 up = vec3perp_unit(forward, right);
 
@@ -22,8 +33,7 @@ vec3 r_vec3localize(vec3 v, vec3 c_pos, vec3 c_target)
                           {right.z, up.z, forward.z, 0},
                           {-vec3dot(right, c_pos),
                            -vec3dot(up, c_pos),
-                           -vec3dot(forward, c_pos),
-                           1}};
+                           -vec3dot(forward, c_pos), 1}};
 
     return r_mat4x4_mul_vec3(mat4x4, v);
 }
