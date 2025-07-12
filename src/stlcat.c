@@ -8,24 +8,25 @@
 // FIXME: y changes when all p c and t in the same plain
 int main(int argc, char const *argv[])
 {
-    if (argc < 2)
+    if (argc < 3)
     {
         printf("Not enough args");
         return 1;
     }
 
     // solid sol = solid_new_from_file_bin(argv[1]);
-    vec3 camera = VEC3(2, 0, 0);
 
     /*vec3 target = VEC3(
         strtof(argv[1], NULL),
         strtof(argv[2], NULL),
         strtof(argv[3], NULL));*/
 
+    vec3 camera = VEC3(2, 0, 0);
     vec3 target = VEC3(0, 0, 0);
-
     canvas c = canvas_new_of_size(VEC2U(100, 100));
-    solid s = solid_new_from_file_bin(argv[1]);
+
+    float fov = strtof(argv[1], NULL);
+    solid s = solid_new_from_file_bin(argv[2]);
 
     for (size_t i = 0; i < s.n_tris; i++)
     {
@@ -33,9 +34,9 @@ int main(int argc, char const *argv[])
         vec3 p2_cam = r_vec3localize(s.tris[i].p2, camera, target);
         vec3 p3_cam = r_vec3localize(s.tris[i].p2, camera, target);
 
-        canvas_set_vec2u(&c, r_vec3proj(p1_cam, 20, c.size), TC_WHITE);
-        canvas_set_vec2u(&c, r_vec3proj(p2_cam, 20, c.size), TC_WHITE);
-        canvas_set_vec2u(&c, r_vec3proj(p3_cam, 20, c.size), TC_WHITE);
+        canvas_set_vec2u(&c, r_vec3proj(p1_cam, fov, c.size), TC_WHITE);
+        canvas_set_vec2u(&c, r_vec3proj(p2_cam, fov, c.size), TC_WHITE);
+        canvas_set_vec2u(&c, r_vec3proj(p3_cam, fov, c.size), TC_WHITE);
     }
 
     canvas_print(&c);
