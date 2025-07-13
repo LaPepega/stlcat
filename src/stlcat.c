@@ -1,14 +1,11 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
-
 #include <time.h>
 
 #include "solid.h"
 #include "render.h"
 #include "terminal.h"
-
-#define DEPTH_COLOR(Z) (255 + (Z * 10)) <= 232 ? 232 : (255 + (Z * 10))
 
 // FIXME: y changes when all p c and t in the same plain
 int main(int argc, char const *argv[])
@@ -41,20 +38,8 @@ int main(int argc, char const *argv[])
 
     start = clock();
 
-    for (size_t i = 0; i < s.n_tris; i++)
-    {
-        vec3 p1_cam = r_vec3localize(&s.tris[i].p1, &camera, &target);
-        vec3 p2_cam = r_vec3localize(&s.tris[i].p2, &camera, &target);
-        vec3 p3_cam = r_vec3localize(&s.tris[i].p2, &camera, &target);
+    canvas_render_solid(&c, &s, &camera, &target, fov);
 
-        vec2u p1_proj = r_vec3proj(&p1_cam, fov, &c.size);
-        vec2u p2_proj = r_vec3proj(&p2_cam, fov, &c.size);
-        vec2u p3_proj = r_vec3proj(&p3_cam, fov, &c.size);
-
-        canvas_set_vec2u(&c, &p1_proj, DEPTH_COLOR(p1_cam.z));
-        canvas_set_vec2u(&c, &p2_proj, DEPTH_COLOR(p2_cam.z));
-        canvas_set_vec2u(&c, &p3_proj, DEPTH_COLOR(p3_cam.z));
-    }
     end = clock();
 
     canvas_print(&c);

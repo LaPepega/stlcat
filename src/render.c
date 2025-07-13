@@ -1,5 +1,3 @@
-#include "solid.h"
-#include "vec2.h"
 #include "render.h"
 
 vec3 r_mat4x4_mul_vec3(float mat4x4[4][4], vec3 *v)
@@ -47,4 +45,22 @@ vec2u r_vec3proj(vec3 *v, float fov, vec2u *screen)
 {
     return VEC2U((v->x * fov) / v->z + (screen->x / 2),
                  (v->y * fov) / v->z + (screen->y / 2));
+}
+
+void canvas_render_solid(canvas *c, solid *s, vec3 *camera, vec3 *target, float fov)
+{
+    for (size_t i = 0; i < s->n_tris; i++)
+    {
+        vec3 p1_cam = r_vec3localize(&s->tris[i].p1, camera, target);
+        vec3 p2_cam = r_vec3localize(&s->tris[i].p2, camera, target);
+        vec3 p3_cam = r_vec3localize(&s->tris[i].p2, camera, target);
+
+        vec2u p1_proj = r_vec3proj(&p1_cam, fov, &c->size);
+        vec2u p2_proj = r_vec3proj(&p2_cam, fov, &c->size);
+        vec2u p3_proj = r_vec3proj(&p3_cam, fov, &c->size);
+
+        canvas_set_vec2u(c, &p1_proj, DEPTH_COLOR(p1_cam.z));
+        canvas_set_vec2u(c, &p2_proj, DEPTH_COLOR(p2_cam.z));
+        canvas_set_vec2u(c, &p3_proj, DEPTH_COLOR(p3_cam.z));
+    }
 }
