@@ -6,7 +6,7 @@
 const char *argp_program_version = "stlcat 0.0.1";
 const char *argp_program_bug_address = "https://github.com/LaPepega/stlcat/issues";
 static char doc[] = "Render an .stl file right into your terminal";
-static char args_doc[] = "stlcat [OPTION] <path/to/file.stl>";
+static char args_doc[] = "<path/to/file.stl>";
 
 static struct argp_option options[] = {
     {"stats", 's', 0, 0, "Show render stats", 0},
