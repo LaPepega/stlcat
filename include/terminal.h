@@ -53,12 +53,13 @@ typedef struct canvas
 
 // FIXME: find safe snprintf() alternative
 
-unsigned int canvas_coord_idx(vec2u size, vec2u v);
+unsigned int canvas_vec2u_idx(vec2u *size, vec2u *v);
+unsigned int canvas_coord_idx(unsigned int w, unsigned int h, unsigned int x, unsigned int y);
 
 canvas canvas_new_of_size(vec2u s);
 void canvas_free(canvas *c);
 
-void canvas_set(canvas *c, int x, unsigned int y, color256 color);
-void canvas_set_vec2u(canvas *c, vec2u pos, color256 color);
+void canvas_set(canvas *c, unsigned int x, unsigned int y, color256 color);
+void canvas_set_vec2u(canvas *c, vec2u *pos, color256 color);
 
 void canvas_print(canvas *c);
