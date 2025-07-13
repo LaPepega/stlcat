@@ -1,6 +1,6 @@
 # stlcat
 
-A simple, small, terminal based, stl viwer written in C
+A simple, small, terminal based .stl file renderer written in C
 
 ## About
 
