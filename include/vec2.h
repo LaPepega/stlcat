@@ -23,7 +23,7 @@ typedef struct vec2i
 } vec2i;
 
 #define VEC2I(X, Y) \
-    (vec2i) { .x = X, .y = Y; }
+    (vec2i) { .x = X, .y = Y }
 
 #define VEC2I_ZERO (vec2i){.x = 0, .y = 0}
 #define VEC2I_X (vec2i){.x = 1, .y = 0}
